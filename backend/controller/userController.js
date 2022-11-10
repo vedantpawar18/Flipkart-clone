@@ -15,7 +15,21 @@ const userSignUp= async(req,res) =>{
  }
 }
 
+const userLogIn = async (request, response) => {
+    try {
+        let User = await user.findOne({ username: request.body.username, password: request.body.password });
+        if(User) {
+            return response.status(200).json(`${request.body.username} login successfull`);
+        } else {
+            return response.status(401).json('Invalid Login');
+        }
+
+    } catch (error) {
+        response.status('Error: ', error.message);        
+    }
+}
+
 
 module.exports= {
-    userSignUp
+    userSignUp ,userLogIn
 }
