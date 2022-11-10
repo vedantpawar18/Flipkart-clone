@@ -34,7 +34,7 @@ const Container = styled(Box)`
 const CustomButtons = () => {
   const [open , setOpen]= useState(false);
 
-  const {account} = useContext(DataContext)
+  const {account, setAccount} = useContext(DataContext)
 
   const setLogin =()=>{
     setOpen(true)
@@ -43,7 +43,7 @@ const CustomButtons = () => {
   return (
       <Wrapper>
         {
-          account ? <Profile account={account}/> :
+          account ? <Profile account={account} setAccount={setAccount}/> :
           <LoginButton onClick={()=>setLogin()} variant="contained">Login</LoginButton>
         }
        
